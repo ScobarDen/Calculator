@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(0, 0, 7, 0.89);
+    font-family: arial, sans-serif;
+    font-size: 30px;
+    color: #fff;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator-body {
+    width: 300px;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 7, 0.89) 0px 2px 8px 0px;
+}
+
+.calculator-screen {
+    height: 20%;
+    background-color: rgba(0, 0, 7, 0.39);
+    text-align: right;
+    position: relative;
+}
+
+.calculator-screen span {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.calculator-keyboard {
+    height: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.key {
+    width: 25%;
+    height: 20%;
+    background-color: rgba(54, 54, 56, 0.19);
+    border: 1px solid rgba(0, 0, 7, 0.39);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.key2 {
+    width: 50%;
+    position: relative;
+}
+
+.key2 span {
+    position: absolute;
+    left: 20%;
+}
+
+.color1{
+    background-color: rgba(54, 54, 56, 0.89);
+}
+
+.color2{
+    background-color: rgb(250, 142, 0);
+}
+
+.key:hover{
+    box-shadow: rgba(0, 0, 7, 0.89) 0px 2px 8px 0px;
+}
+
+.key:active{
+    box-shadow: inset rgba(0, 0, 7, 0.89) 0px 2px 8px 0px;
+}
+
