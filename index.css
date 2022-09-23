@@ -16,12 +16,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
 }
 
 .calculator-body {
     width: 300px;
     height: 500px;
-    border-radius: 20px;
+    border-radius: 5%;
     overflow: hidden;
     box-shadow: rgba(0, 0, 7, 0.89) 0px 2px 8px 0px;
 }
@@ -35,8 +37,8 @@ body {
 
 .calculator-screen span {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 15%;
+    right: 5%;
 }
 
 .calculator-keyboard {
