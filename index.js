@@ -3,8 +3,8 @@ const calculatorContainer = document.querySelector('#calc-cont1')
 
 
 createCalculator(300, 500, calculatorContainer)
-createCalculator(150, 250, calculatorContainer)
-createCalculator(75, 125, calculatorContainer)
+// createCalculator(150, 250, calculatorContainer)
+// createCalculator(75, 125, calculatorContainer)
 
 function createCalculator(width, height, container) {
     const buttons = [
@@ -103,6 +103,15 @@ function createCalculator(width, height, container) {
     calculatorBody.append(calculatorScreen, calculatorKeyboard)
     container.append(calculatorBody)
 
+    const calcObject = {
+        first: '',
+        second: '',
+        total: '',
+        isTotal: false,
+        operation: '',
+        count: 0
+    }
+
     buttons.forEach(button => {
         const {dataValue, className} = button
         const buttonCalc = document.createElement('div')
@@ -117,8 +126,65 @@ function createCalculator(width, height, container) {
 
 
     function clickHandler(e) {
-        const action = e.target.closest(`div`).dataset.value
-        calculatorScreen.querySelector('span').innerHTML = action
+        const button = e.target.closest(`div`)
+        const action = button.dataset.value
+
+        const classes = button.className.split(' ')
+        if (classes.includes('color1') || classes.includes('color2')) {
+            if (action === '=') {
+                calcObject.total = calculate(calcObject.first,calcObject.second,calcObject.operation)
+                calculatorScreen.querySelector('span').innerHTML = calcObject.total
+                calcObject.first = calcObject.total
+                calcObject.count = 0
+            }
+            // if (action === 'AC'){
+            //     calculatorScreen.querySelector('span').innerHTML = ''
+            //     calcObject.second = ''
+            //     calcObject.first = ''
+            //     calcObject.count = 0
+            // }
+            calcObject.operation = action
+            calcObject.count = 1
+        }
+        else{
+            if(calcObject.count === 0) {
+                calcObject.first += action
+                calculatorScreen.querySelector('span').innerHTML = calcObject.first
+            }
+            else if(calcObject.count === 1) {
+                calcObject.second += action
+                calculatorScreen.querySelector('span').innerHTML = calcObject.second
+            }
+        }
+        console.log(calcObject)
+    }
+
+
+    function calculate(first,second,operation){
+        first = Number(first)
+        second = Number(second)
+        let answer = 0
+        switch (operation) {
+            case '+/-':
+                answer = -first
+                break
+            case '%':
+                answer = first % second
+                break
+            case 'x':
+                answer = first * second
+                break
+            case '/':
+                answer = first / second
+                break
+            case '-':
+                answer = first - second
+                break
+            case '+':
+                answer = first + second
+                break
+        }
+        return answer
     }
 }
 
