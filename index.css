@@ -1,7 +1,5 @@
 body {
     background-color: rgba(0, 0, 7, 0.89);
-    font-family: arial, sans-serif;
-    font-size: 30px;
     color: #fff;
 }
 
@@ -20,6 +18,8 @@ body {
     border-radius: 5%;
     overflow: hidden;
     box-shadow: rgba(0, 0, 7, 0.89) 0 2px 8px 0;
+    font-family: arial, sans-serif;
+    font-size: 30px;
 }
 
 .calculator-screen {
