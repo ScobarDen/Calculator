@@ -147,7 +147,6 @@ function createCalculator(width, height, container) {
         const button = e.target.closest(`div`)
         const action = button.dataset.value
 
-        const classes = button.className.split(' ')
         if (button.dataset.option === 'func') {
             if (action === '=') {
                 calcObject.total = calculate(calcObject.first, calcObject.second, calcObject.operation)
@@ -173,7 +172,7 @@ function createCalculator(width, height, container) {
                     calculatorScreen.querySelector('span').innerHTML = calcObject.first
                 }
 
-            } else if(action == '.'){
+            } else if (action == '.') {
                 if (calcObject.second && !calcObject.isPoint) {
                     calcObject.second = (calcObject.second + '.')
                     calculatorScreen.querySelector('span').innerHTML = calcObject.second
@@ -182,14 +181,13 @@ function createCalculator(width, height, container) {
                     calculatorScreen.querySelector('span').innerHTML = calcObject.first
                 }
                 calcObject.isPoint = true
-            }
-            else {
+            } else {
                 calcObject.operation = action
                 calcObject.count = 1
                 calcObject.isPoint = false
             }
         }
-        if(button.dataset.option === 'num') {
+        if (button.dataset.option === 'num') {
             if (calcObject.count === 0) {
                 calcObject.first += action
                 calculatorScreen.querySelector('span').innerHTML = calcObject.first
@@ -223,7 +221,7 @@ function createCalculator(width, height, container) {
             default:
                 answer = first || second
         }
-        return Math.trunc( answer * 1e4 ) / 1e4
+        return Math.trunc(answer * 1e4) / 1e4
     }
 }
 
