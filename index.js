@@ -125,7 +125,7 @@ function createCalculator(width, height, container) {
         first: '',
         second: '',
         total: '',
-        isPoint: false,
+        isTotal: false,
         operation: '',
         count: 0
     }
@@ -148,22 +148,23 @@ function createCalculator(width, height, container) {
         const action = button.dataset.value
 
         if (button.dataset.option === 'func') {
-            if (action === '=') {
+            if (action === '=' && !calcObject.isTotal) {
                 calcObject.total = calculate(calcObject.first, calcObject.second, calcObject.operation)
                 calculatorScreen.querySelector('span').innerHTML = calcObject.total
                 calcObject.first = calcObject.total
                 calcObject.second = ''
                 calcObject.count = 0
-                calcObject.isPoint = false
+                calcObject.isTotal = true
             } else if (action == 'AC') {
                 calcObject.first = ''
                 calcObject.second = ''
                 calcObject.operation = ''
                 calcObject.total = ''
                 calcObject.count = 0
-                calcObject.isPoint = false
+                calcObject.isTotal = false
                 calculatorScreen.querySelector('span').innerHTML = ''
             } else if (action == '+/-') {
+                calcObject.isTotal = false
                 if (calcObject.second) {
                     calcObject.second = -Number(calcObject.second)
                     calculatorScreen.querySelector('span').innerHTML = calcObject.second
@@ -173,21 +174,23 @@ function createCalculator(width, height, container) {
                 }
 
             } else if (action == '.') {
-                if (calcObject.second && !calcObject.isPoint) {
-                    calcObject.second = (calcObject.second + '.')
-                    calculatorScreen.querySelector('span').innerHTML = calcObject.second
-                } else if (calcObject.first && !calcObject.isPoint) {
-                    calcObject.first = (calcObject.first + '.')
-                    calculatorScreen.querySelector('span').innerHTML = calcObject.first
+                if(Number.isInteger(Number(calculatorScreen.querySelector('span').innerHTML))) {
+                    if (calcObject.second) {
+                        calcObject.second = (calcObject.second + '.')
+                        calculatorScreen.querySelector('span').innerHTML = calcObject.second
+                    } else if (calcObject.first) {
+                        calcObject.first = (calcObject.first + '.')
+                        calculatorScreen.querySelector('span').innerHTML = calcObject.first
+                    }
                 }
-                calcObject.isPoint = true
             } else {
                 calcObject.operation = action
                 calcObject.count = 1
-                calcObject.isPoint = false
+                calcObject.isTotal = false
             }
         }
         if (button.dataset.option === 'num') {
+            calcObject.isTotal = false
             if (calcObject.count === 0) {
                 calcObject.first += action
                 calculatorScreen.querySelector('span').innerHTML = calcObject.first
