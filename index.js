@@ -117,6 +117,9 @@ function createCalculator(width, height, container) {
 
     const calculatorKeyboard = document.createElement('div')
     calculatorKeyboard.classList.add('calculator-keyboard')
+    calculatorKeyboard.addEventListener('selectstart',(e)=>{
+        e.preventDefault()
+    })
 
     calculatorBody.append(calculatorScreen, calculatorKeyboard)
     container.append(calculatorBody)
